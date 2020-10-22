@@ -59,8 +59,8 @@ function setup() {
   
   score = 0;
   
-  gameOver = createSprite(300,100);
-  restart = createSprite(300,140);
+  gameOver = createSprite(300,80);
+  restart = createSprite(300,120);
   gameOver.addImage(gameOverImg);
   gameOver.scale = 0.5;
   restart.addImage(restartImg);
@@ -124,6 +124,10 @@ function draw() {
     spawnObstacles();
     
   } else if(gameState === END) {
+
+    gameOver.x = camera.position.x;
+    restart.x = camera.position.x;
+
     gameOver.visible = true;
     restart.visible = true;
     
