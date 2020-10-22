@@ -93,7 +93,7 @@ function draw() {
     }
     
     if(keyDown("space") && trex.y >= 159) {
-    trex.velocityY = -13;
+    trex.velocityY = -15;
     jumpSound.play();
     }
 
@@ -102,12 +102,11 @@ function draw() {
     trex.velocityY = trex.velocityY + 0.8
     invisibleGround.x = trex.x;
 
+    trex.x = camera.position.x - 250;
+
     //ground.x = ground.x - 4;
 
     camera.position.x = camera.position.x + 4;
-    trex.x = camera.position.x - 250;
-
-    ground.x = ground.x + 4;
     
     //=ground.velocityX = -4;
     
@@ -156,12 +155,11 @@ function draw() {
 
 function spawnClouds() {
   //write code here to spawn the clouds
-  if (frameCount % 60 === 0) {
+  if (camera.position.x % 120 === 0) {
     var cloud = createSprite(camera.position.x + 300,120,40,10);
     cloud.y = Math.round(random(80,120));
     cloud.addImage(cloudImage);
     cloud.scale = 0.5;
-    cloud.velocityX = -3;
     
      //assign lifetime to the variable
     cloud.lifetime = 200;
@@ -177,9 +175,8 @@ function spawnClouds() {
 }
 
 function spawnObstacles() {
-  if(frameCount % 60 === 0) {
+  if(camera.position.x % 240 === 0) {
     var obstacle = createSprite(camera.position.x + 300,165,10,40);
-    obstacle.velocityX = - (6 + 3*score/100);
     
     //generate random obstacles
     var rand = Math.round(random(1,6));
